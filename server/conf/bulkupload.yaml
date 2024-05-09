@@ -1,0 +1,56 @@
+order:
+  A21:
+    trackingNumber: "tracking_id"
+    jobType: "job_type"
+    customerName: "account_name"
+    pickupStreetAddress: "pickup_full_address"
+    pickupPostal: "pickup_postal_code"
+    pickupLatLng: "pickup_latlong"
+    deliveryStreetAddress: "delivery_full_address"
+    deliveryPostal: "delivery_postal_code"
+    deliveryLatLng: "delivery_latlong"
+    orderedDate: "task_date"
+    preferredPickupStartDateTime: "pickup_starttime"
+    preferredPickupEndDateTime: "pickup_endtime"
+    preferredDeliveryStartDateTime: "delivery_starttime"
+    preferredDeliveryEndDateTime: "delivery_endtime"
+    pickupCustomServiceTime: "pickup_custom_st"
+    deliveryCustomServiceTime: "delivery_custom_st"
+    zone: "zones"
+    skills: "skills"
+    quantity: "item_expected_quantity"
+  insertNewCustomer: True  
+  insertNewAddress: True
+  dertermineZone: true // if true, dertermine zone from latlng.
+  dertermineLatlng: true // if true, dertermine latlng from address.
+
+item:
+  itemKeyMap:
+    itemSKU: "Material"
+    status: "Status1"
+    name: "Description"
+    weight: "Weight / Kg."
+    innerPack: "Innerpack"
+    sort: "Sort"
+    owner: "Owner"
+    type: "Type"
+  SOL:
+    itemSKU: "Item Code"
+    name: "Products"
+    weight: "Weight / Kg."
+  MasterMat7:
+    itemSKU: "Product ID"
+    name: "Product Detail"
+    weight: "Weight / Kg."
+  MasterTemplate:
+    itemSKU: "product_code"
+    name: "product_name"
+    weight: "weight"
+
+
+vehicle: 
+  vehicleKeyMap:
+    licensePlate: "license_plate"
+    vehicleType: "vehicle_type_id"
+    depotStartId: "depot_start_id"
+    depotEndId: "depot_end_id"

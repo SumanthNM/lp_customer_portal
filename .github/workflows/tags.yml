@@ -1,0 +1,44 @@
+name: Auto Tag on Dev Push
+
+on:
+  push:
+    branches:
+      - a21
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Git
+      run: |
+        git config --global user.email "your-email@example.com"
+        git config --global user.name "GitHub Actions"
+
+    - name: Get Latest Dev Tags
+      id: latest_a21_tags
+      run: |
+        git fetch --prune --tags
+        latest_version=$(git tag -l 'a21_V*' | grep -oP 'a21_V[0-9.]+' | sort -V | tail -n 1)
+        echo "Latest a21 Version: $latest_version"
+        echo "::set-output name=a21_tags::$latest_version"
+
+    - name: Determine Next Dev Version
+      id: a21_version
+      run: |
+        latest_a21_tags=${{ steps.latest_a21_tags.outputs.a21_tags }}
+        latest_version=$(echo "$latest_a21_tags" | grep -oP 'a21_V\K[0-9.]+' | sort -n | tail -n 1)
+        next_version=$(awk "BEGIN {printf \"%.2f\", $latest_version + 0.01}")
+        echo "a21_next_version=a21_V${next_version}" >> $GITHUB_ENV
+        a21_new_version="a21_V${next_version}"
+        echo "a21_next_version=$a21_new_version" >> $GITHUB_ENV
+        echo "::set-output name=new_tags::$a21_new_version"
+      
+    - name: Create and Push A21 Tag
+      run: |
+        A21_TAG=${{ steps.a21_version.outputs.new_tags }}
+        git tag -a $A21_TAG -m "Tagging version $A21_TAG"
+        git push origin $A21_TAG

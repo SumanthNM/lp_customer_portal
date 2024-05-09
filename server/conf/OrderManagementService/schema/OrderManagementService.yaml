@@ -1,0 +1,223 @@
+swagger: "2.0"
+info:
+  title: ""
+  version: ""
+basePath: /
+paths:
+  /api/v1/_pull-vf-data:
+    post:
+      operationId: PullOrdersFromVF
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/_push-vf-data:
+    post:
+      operationId: PushOrdersToVF
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/customer/items:
+    get:
+      operationId: FetchAllItems
+      consumes:
+      - application/json
+      produces:
+      - application/json
+    post:
+      operationId: CreateItem
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/customer/items/{id}:
+    get:
+      operationId: FetchItemById
+      consumes:
+      - application/json
+      produces:
+      - application/json
+    delete:
+      operationId: DeleteItemById
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/customer/order:
+    get:
+      operationId: GetAllOrders
+      consumes:
+      - application/json
+      produces:
+      - application/json
+    post:
+      operationId: CreateOrder
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/customer/order/{id}:
+    get:
+      operationId: GetOrderById
+      consumes:
+      - application/json
+      produces:
+      - application/json
+    put:
+      operationId: UpdateOrder
+      consumes:
+      - application/json
+      produces:
+      - application/json
+    delete:
+      operationId: DeleteOrder
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/customer/orders-history:
+    get:
+      operationId: OrdersHistory
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/customers:
+    get:
+      operationId: GetAllCustomers
+      consumes:
+      - application/json
+      produces:
+      - application/json
+    post:
+      operationId: CreateCustomer
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/CustomerPayload'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/customers/{id}:
+    get:
+      operationId: GetCustomerById
+      consumes:
+      - application/json
+      produces:
+      - application/json
+    put:
+      operationId: UpdateCustomer
+      consumes:
+      - application/json
+      produces:
+      - application/json
+    delete:
+      operationId: DeleteCustomer
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/items/{id}:
+    put:
+      operationId: UpdateItemById
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/items/bulk-insert:
+    post:
+      operationId: BulkInsertItems
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+  /api/v1/order/_selectall:
+    put:
+      operationId: SelectAllOrdersForOptimization
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/order/{id}/_confirm:
+    post:
+      operationId: ConfirmStatus
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/order/zone/count:
+    get:
+      operationId: GetOrdersByZone
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/orders/_duplicates:
+    get:
+      operationId: GetAllDuplicates
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/orders/{id}/_select:
+    put:
+      operationId: SelectOrderForOptimization
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/orders/{id}/_unselect:
+    put:
+      operationId: UnSelectOrderForOptimization
+      consumes:
+      - application/json
+      produces:
+      - application/json
+  /api/v1/orders/bulk-insert:
+    post:
+      operationId: BulkInsert
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+definitions:
+  Address:
+    type: object
+    properties:
+      city:
+        type: string
+      country:
+        type: string
+      latitude:
+        type: number
+        format: double
+      longitude:
+        type: number
+        format: double
+      state:
+        type: string
+      street:
+        type: string
+      zipCode:
+        type: integer
+        format: ""
+      zoneId:
+        type: integer
+        format: ""
+  CustomerPayload:
+    type: object
+    properties:
+      address:
+        type: array
+        items:
+          $ref: '#/definitions/Address'
+      contact:
+        type: string
+      customerName:
+        type: string
+      email:
+        type: string

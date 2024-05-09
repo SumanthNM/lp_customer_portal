@@ -1,0 +1,4 @@
+versafleet: 
+  pushOrders: http://a21-dev.integrum.global:8000/push_results
+  pullOrders: http://a21-dev.integrum.global:8000/pull_orders
+  unassignTasks: http://a21-dev.integrum.global:8000/unassign_tasks

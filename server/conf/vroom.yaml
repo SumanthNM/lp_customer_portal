@@ -1,0 +1,2 @@
+vroom:
+  endpoint: "https://stage1.sumeru.io/api/v1.0.0/optimizer/optimize"
